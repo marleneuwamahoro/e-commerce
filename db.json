@@ -1,0 +1,18 @@
+{
+  "store_info": [
+    {
+      "id": 1,
+      "name": "ShopReact",
+      "description": "The best online store for all your needs",
+      "phone_number": "555-5555"
+    }
+  ],
+  "cart": [],
+  "users": [
+    {
+      "id": "1",
+      "email": "marlene@me.dev",
+      "password": "123456789"
+    }
+  ]
+}
