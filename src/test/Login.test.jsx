@@ -33,9 +33,9 @@ describe('Login', () => {
     const emailInput = screen.getByPlaceholderText('marlene@me.dev')
     const passwordInput = screen.getByPlaceholderText('••••••••')
     fireEvent.change(emailInput, { target: { value: 'marlene@me.dev' } })
-    fireEvent.change(passwordInput, { target: { value: '123456789' } })
+    fireEvent.change(passwordInput, { target: { value: '1234' } })
     expect(emailInput.value).toBe('marlene@me.dev')
-    expect(passwordInput.value).toBe('123456789')
+    expect(passwordInput.value).toBe('1234')
   })
 
   test('shows test credentials hint', () => {
