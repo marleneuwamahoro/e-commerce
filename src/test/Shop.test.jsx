@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext'
 import { CartContext } from '../context/CartContext'
+import { UserContext } from '../context/UserContext'
 import Shop from '../pages/Shop'
 
 const mockProducts = [
@@ -12,13 +13,15 @@ const mockProducts = [
 
 function renderShop(cart = []) {
   return render(
-    <ProductContext.Provider value={{ products: mockProducts, setProducts: vi.fn() }}>
-      <CartContext.Provider value={{ cart, setCart: vi.fn() }}>
-        <MemoryRouter>
-          <Shop />
-        </MemoryRouter>
-      </CartContext.Provider>
-    </ProductContext.Provider>
+    <UserContext.Provider value={{ user: { email: 'marlene@me.dev' }, setUser: vi.fn() }}>
+      <ProductContext.Provider value={{ products: mockProducts, setProducts: vi.fn() }}>
+        <CartContext.Provider value={{ cart, setCart: vi.fn() }}>
+          <MemoryRouter>
+            <Shop />
+          </MemoryRouter>
+        </CartContext.Provider>
+      </ProductContext.Provider>
+    </UserContext.Provider>
   )
 }
 
@@ -41,7 +44,7 @@ describe('Shop', () => {
 
   test('filters products by origin checkbox', () => {
     renderShop()
-    fireEvent.click(screen.getByLabelText ? screen.getByText('Colombia') : screen.getByText('Colombia'))
+    fireEvent.click(screen.getByText('Colombia'))
     expect(screen.getByText('Vanilla Bean')).toBeInTheDocument()
     expect(screen.queryByText('House Blend')).not.toBeInTheDocument()
   })

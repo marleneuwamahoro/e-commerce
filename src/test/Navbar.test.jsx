@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
+import { UserContext } from '../context/UserContext'
 import Navbar from '../compnents/Navbar'
 
 const mockCart = [
@@ -8,13 +9,15 @@ const mockCart = [
   { id: 2, name: 'House Blend', price: 12.00, coffeeId: 2 }
 ]
 
-function renderNavbar(cart = []) {
+function renderNavbar(cart = [], user = {}) {
   return render(
-    <CartContext.Provider value={{ cart, setCart: vi.fn() }}>
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>
-    </CartContext.Provider>
+    <UserContext.Provider value={{ user, setUser: vi.fn() }}>
+      <CartContext.Provider value={{ cart, setCart: vi.fn() }}>
+        <MemoryRouter>
+          <Navbar />
+        </MemoryRouter>
+      </CartContext.Provider>
+    </UserContext.Provider>
   )
 }
 
