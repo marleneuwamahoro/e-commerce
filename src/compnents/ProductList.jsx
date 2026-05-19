@@ -2,11 +2,11 @@ import ProductCard from './ProductCard'
 import { UseProducts } from '../context/ProductContext'
 
 export default function ProductList({ search = '' }) {
-  const { products } = UseProducts()
+  const { products = [] } = UseProducts()  // ← guard against undefined products
 
   const filtered = products.filter(product =>
-    product.title.toLowerCase().includes(search.toLowerCase()) ||
-    product.description.toLowerCase().includes(search.toLowerCase())
+    (product.title ?? '').toLowerCase().includes(search.toLowerCase()) ||
+    (product.description ?? '').toLowerCase().includes(search.toLowerCase())  // ← guard against undefined fields
   )
 
   return (

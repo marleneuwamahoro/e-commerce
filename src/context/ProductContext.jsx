@@ -6,12 +6,10 @@ export function ProductProvider({ children }) {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    fetch('https://mockerjson.xyz/api/v1/products/')
-      .then(response => response.json())
-      .then(fetchedData => {
-        const { data } = fetchedData
-        setProducts(data)
-      })
+    fetch('http://localhost:3000/coffee')
+      .then(r => r.json())
+      .then(setProducts)
+      .catch(() => setProducts([]))
   }, [])
 
   return (

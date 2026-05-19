@@ -11,6 +11,8 @@ import AddProduct from './pages/AddProduct.jsx'
 import { UserProvider } from './context/UserContext.jsx'
 import { CartProvider } from './context/CartContext.jsx'
 import { ProductProvider } from './context/ProductContext.jsx'
+import Shop from './pages/Shop.jsx'
+import AdminPortal from './pages/AdminPortal.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,12 +21,14 @@ createRoot(document.getElementById('root')).render(
         <CartProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<App />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Home />} />
+<Route path="/home" element={<App />} />
               <Route path="/login" element={<Login />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/add-product" element={<AddProduct />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/admin" element={<AdminPortal />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>
