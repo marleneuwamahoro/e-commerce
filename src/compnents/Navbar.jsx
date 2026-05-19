@@ -1,10 +1,13 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { UseCart } from '../context/CartContext'
+import { useUser } from '../context/UserContext'
 import { useState } from 'react'
 
 export default function Navbar() {
   const { cart, setCart } = UseCart()
+  const { user, setUser } = useUser()
   const [showCart, setShowCart] = useState(false)
+  const navigate = useNavigate()
 
   function removeItem(id) {
     setCart(prev => prev.filter(item => item.id !== id))
@@ -15,6 +18,12 @@ export default function Navbar() {
     cart.forEach(item => fetch(`http://localhost:3000/cart/${item.id}`, { method: 'DELETE' }))
     setCart([])
     setShowCart(false)
+  }
+
+  function handleLogout() {
+    setUser({})
+    setCart([])
+    navigate('/login')
   }
 
   const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0)
@@ -43,9 +52,41 @@ export default function Navbar() {
           Admin Portal
         </NavLink>
 
-        <button className="cartBtn" onClick={() => setShowCart(prev => !prev)}>
-          🛒 Cart <span className="badge">{cart.length}</span>
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {user?.email && (
+            <span style={{
+              color: 'white',
+              fontSize: '0.9rem',
+              backgroundColor: 'rgba(255,255,255,0.15)',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              border: '1px solid rgba(255,255,255,0.3)'
+            }}>
+              👤 {user.name || user.email}
+            </span>
+          )}
+
+          <button className="cartBtn" onClick={() => setShowCart(prev => !prev)}>
+            🛒 Cart <span className="badge">{cart.length}</span>
+          </button>
+
+          {user?.email && (
+            <button
+              onClick={handleLogout}
+              style={{
+                backgroundColor: 'transparent',
+                border: '1px solid rgba(255,255,255,0.4)',
+                borderRadius: '20px',
+                padding: '6px 14px',
+                color: 'white',
+                fontSize: '0.9rem',
+                cursor: 'pointer'
+              }}
+            >
+              Logout
+            </button>
+          )}
+        </div>
       </nav>
 
       {showCart && (
