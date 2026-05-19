@@ -27,7 +27,7 @@
       "name": "Ethiopian Sunrise",
       "description": "Light Roast, fruity notes",
       "origin": "Ethiopia",
-      "price": 144
+      "price": 1450
     },
     {
       "id": 4,
@@ -77,44 +77,32 @@
       "origin": "rwanda",
       "price": 199.94,
       "id": 10
+    },
+    {
+      "name": "f",
+      "description": "Kigali new Product",
+      "origin": "d",
+      "price": 30,
+      "id": 11
     }
   ],
   "cart": [
     {
-      "id": 6,
-      "name": "Sunset Blend",
-      "description": "Medium Dark Roast, caramel notes",
-      "origin": "Kenya",
-      "price": 13
-    },
-    {
-      "id": 7,
-      "name": "Island Dream",
-      "description": "Light Medium Roast, tropical hints",
-      "origin": "Hawaii",
-      "price": 16
-    },
-    {
-      "id": 1,
-      "name": "Vanilla Bean",
-      "description": "Medium Roast, nutty flavor",
-      "origin": "Colombia",
-      "price": 10
-    },
-    {
-      "name": "Midnight Bold",
-      "description": "Dark Roast, smoky and strong",
-      "origin": "Sumatra",
-      "price": 15,
-      "coffeeId": 8,
-      "id": 8
+      "name": "Ethiopian Sunrise",
+      "description": "Light Roast, fruity notes",
+      "origin": "Ethiopia",
+      "price": 1450,
+      "coffeeId": 3,
+      "id": 1
     }
   ],
+
   "users": [
     {
       "id": "1",
-      "email": "sam@me.dev",
-      "password": "123456789"
+      "name": "Marlene",
+      "email": "marlene@me.dev",
+      "password": "1234"
     }
   ]
 }
